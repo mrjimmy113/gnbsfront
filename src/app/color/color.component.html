@@ -1,0 +1,53 @@
+<div class="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thêm màu</h5>
+        <button type="button" class="close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #productForm="ngForm" (ngSubmit)="onSubmit()" >
+          <div class="form-group">
+            <label>Mã màu</label>
+            <input type="text" class="form-control" placeholder="Điền vào mã màu" name="name"
+              [(ngModel)]="color.id" #name='ngModel' required
+              [ngClass]="{'is-invalid': (name.invalid && (name.dirty || name.touched))}">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+              <div *ngIf="name.errors.required">
+                Xin điền vào mã màu
+              </div>
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label>Số lượng</label>
+            <div class="input-group mb-3">
+
+              <input type="number" class="form-control" placeholder="Điền vào giá sản phẩm" name="quantity"
+              [(ngModel)]="color.quantity" required #quantity='ngModel' pattern="^[1-9]?[0-9]{1,9}$"
+              [ngClass]="{'is-invalid': (quantity.invalid && (quantity.dirty || quantity.touched))}"
+              >
+            
+            </div>
+            <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="text-danger">
+              <div *ngIf="quantity.errors.required">
+                Số lượng sản phẩm không hợp lệ
+              </div>
+              <div *ngIf="quantity.errors.pattern">
+                Số lượng sản phẩm không hợp lệ
+              </div>
+            </div>
+          </div>
+          
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="onSubmit()" [disabled]="!productForm.form.valid">Thêm</button>
+        <button type="button" class="btn btn-danger" (click)="closeModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>

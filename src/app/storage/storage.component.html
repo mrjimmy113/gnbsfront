@@ -1,0 +1,55 @@
+<h1 class="h3 text-black-50">Kho hàng</h1>
+<button class="btn btn-success" (click)="openCreateModal()">Thêm sản phẩm</button>
+<div class="list-group">
+
+  <div class="card w3-animate-bottom" *ngFor="let product of productList; let i = index">
+    <div class="list-group-item w3-hover-blue " [ngClass]="{'w3-blue': product.subProduct}">
+      <div class="row">
+        <div class="col-sm-1" (click)="openSubProduct(product.id,i)">
+          <i class="fas fa-caret-right fa-lg  " *ngIf="!product.subProduct"></i>
+          <i class="fas fa-caret-down fa-lg  " *ngIf="product.subProduct"></i>
+        </div>
+        <div class="col-sm-5" (click)="openSubProduct(product.id,i)">
+          {{product.name}}
+        </div>
+        <div class="col-sm-2" (click)="openSubProduct(product.id,i)">
+          <div *ngIf="!(product.isSized || product.isColored)">
+            Còn: {{product.quantity}}
+          </div>
+        </div>
+        <div class="col-sm-2" (click)="openSubProduct(product.id,i)">
+          {{product.price | number}}&#8363;
+        </div>
+        <div class="col-sm-2">
+          <div class="w3-dropdown-hover">
+            <i class="fas fa-pen "></i>
+            <div class="w3-dropdown-content w3-bar-block">
+              <button href="#" class="w3-bar-item btn btn-info">Chỉnh sửa</button>
+              <button href="#" class="w3-bar-item btn btn-info" (click)="openColorCreate(product.id)">Thêm màu</button>
+              <button href="#" class="w3-bar-item btn btn-info">Thêm size</button>
+              <button href="#" class="w3-bar-item btn btn-danger">Xóa</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" [ngClass]="{'w3-hide': !product.subProduct}">
+      <table class="w3-table w3-bordered">
+        <tr class="w3-blue">
+          <th>Mã màu</th>
+          <th>Số lượng</th>
+        </tr>
+        <tr class="w3-animate-zoom" *ngFor="let color of product.subProduct">
+
+          <td>
+            {{color.id}}
+          </td>
+          <td>
+           {{color.quantity | number}}
+          </td>
+
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
