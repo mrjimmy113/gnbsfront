@@ -9,4 +9,5 @@ export class Product {
     createdDate: Date;
     modifyDate: Date;
     subProduct: Color[];
+    isOpen:boolean;
 }

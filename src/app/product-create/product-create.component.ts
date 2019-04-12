@@ -22,6 +22,7 @@ export class ProductCreateComponent implements OnInit {
     this.modalSer.destroy();
   }
   onSubmit() {
+    if(!(this.product.isColored || this.product.isSized)) this.product.quantity = 0;
     let date = new Date();
     let today = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     this.product.createdDate = new Date(today);

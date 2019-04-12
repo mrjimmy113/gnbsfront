@@ -10,6 +10,7 @@ import { Product } from '../model/product';
 export class ProductService {
   private createAPI = 'product/create';
   private getAllAPI = 'product/getAll';
+  private removeAPI = 'product/remove/';
   constructor(private http:HttpClient) { }
 
   create(product): Observable<string> {
@@ -18,5 +19,8 @@ export class ProductService {
 
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(environment.apiEndPoint + this.getAllAPI);
+  }
+  remove(id) :Observable<string> {
+    return this.http.delete<string>(environment.apiEndPoint + this.removeAPI + id);
   }
 }

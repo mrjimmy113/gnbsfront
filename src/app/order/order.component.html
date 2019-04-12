@@ -1,0 +1,118 @@
+<div class="">
+    <div class="modal-lg modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xuất hàng</h5>
+                <button type="button" class="close" (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--Heading-->
+                <div class="row w3-blue heading">
+                    <div class="col-sm-1 nopadding">
+
+                    </div>
+                    <div class="col-sm-4 nopadding">
+                        Tên sản phẩm
+                    </div>
+                    <div class="col-sm-2">
+                        Mã màu
+                    </div>
+                    <div class="col-sm-1 d-flex justify-content-center">
+                        Size
+                    </div>
+                    <div class="col-sm-2 d-flex justify-content-center">
+                        Số lượng
+                    </div>
+                    <div class="col-sm-2 d-flex justify-content-center  nopadding">
+                        <i style='font-size:20px' class='fas'>&#xf3d1;</i>
+                    </div>
+                </div>
+                <!--Row-->
+                <div class="listItem scrollbar-primary">
+                    <div class="row rowpadding" *ngFor="let detail of detailList; let i = index">
+                        <div class="col-sm-1 nopadding d-flex flex-row-reverse">
+                            <i class="fa fa-trash d-flex justify-content-center"
+                                style="font-size: 17px; padding-top: 2px; padding-right: 15px; padding-bottom: 2px"
+                                aria-hidden="true" (click)="removeDetail(i)"></i>
+                        </div>
+                        <div class="col-sm-4 nopadding">
+                            {{detail.productName}}
+                        </div>
+                        <div class="col-sm-2">
+                            {{detail.colorId}}
+                        </div>
+                        <div class="col-sm-1 d-flex justify-content-center">
+                            {{detail.sizeId}}
+                        </div>
+                        <div class="col-sm-2 d-flex justify-content-center">
+                            {{detail.quantity}}
+                        </div>
+                        <div class="col-sm-2 nopadding d-flex justify-content-center">
+                            {{detail.money | number}}&#8363;
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row w3-blue heading d-flex flex-row-reverse">
+                    <div style="margin-right: 15px">
+                        Tổng: {{total | number}} &#8363;
+                    </div>
+                </div>
+                <form #detailForm="ngForm" autocomplete="off" style="margin-top: 5px">
+                    <div class="row">
+                        <div class="form-group col-sm-5">
+                            <label>Sản phẩm</label>
+                            <input type="text" class="form-control" (keyup)="findProduct($event)"
+                                (blur)="resetProductName()" name="productName" #productName="ngModel"
+                                [(ngModel)]="detail.productName" required/>
+
+                            <div class="autocomplete scrollbar-primary">
+                                <div class="form-control w3-hover-blue"
+                                    *ngFor="let product of searchProductList; let i = index"
+                                    (click)="chooseProduct(product)">
+                                    {{product.name}}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label>Mã màu</label>
+                            <input type="text" class="form-control"
+                                [disabled]="!currectSubList || (currectSubList.length == 0)" (keyup)="findColor($event)"
+                                (blur)="resetColorId()" name="colorId" #colorId="ngModel"
+                                [(ngModel)]="detail.colorId" required/>
+                            <div class="autocomplete scrollbar-primary">
+                                <div class="form-control w3-hover-blue"
+                                    *ngFor="let sub of searchCurrentSubList; let i = index" (click)="chooseColor(sub)">
+                                    {{sub.id}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label>Size</label>
+                            <input type="text" class="form-control" [disabled]="true" />
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label>Số lượng</label>
+                            <input type="number" class="form-control" min="1" max="{{maxQuantity}}"
+                                onKeyDown="return false" [disabled]="maxQuantity == 0" required 
+                                name="quantity" #quantity="ngModel" [(ngModel)]="detail.quantity"
+                                />
+
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-info" (click)="onSubmit()" [disabled]="!detailForm.form.valid || (detail.quantity == 0 )">Thêm vào</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="onSubmit()">Xác nhận</button>
+                <button type="button" class="btn btn-danger" (click)="closeModal()">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,6 +8,7 @@ import { ProductCreateComponent } from './product-create/product-create.componen
 import { HttpClientModule } from '@angular/common/http';
 import { ColorComponent } from './color/color.component';
 import { SizeComponent } from './size/size.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { SizeComponent } from './size/size.component';
     ProductCreateComponent,
     ColorComponent,
     SizeComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
