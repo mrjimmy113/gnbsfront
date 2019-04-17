@@ -13,14 +13,14 @@ export class ProductService {
   private removeAPI = 'product/remove/';
   constructor(private http:HttpClient) { }
 
-  create(product): Observable<string> {
-    return this.http.post<string>(environment.apiEndPoint + this.createAPI, product);
+  create(product): Observable<Number> {
+    return this.http.post<Number>(environment.apiEndPoint + this.createAPI, product);
   }
 
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(environment.apiEndPoint + this.getAllAPI);
   }
-  remove(id) :Observable<string> {
-    return this.http.delete<string>(environment.apiEndPoint + this.removeAPI + id);
+  remove(id) :Observable<Number> {
+    return this.http.delete<Number>(environment.apiEndPoint + this.removeAPI + id);
   }
 }

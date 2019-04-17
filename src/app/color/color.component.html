@@ -8,12 +8,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #productForm="ngForm" (ngSubmit)="onSubmit()" >
+        <form #productForm="ngForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label>Mã màu</label>
-            <input type="text" class="form-control" placeholder="Điền vào mã màu" name="name"
-              [(ngModel)]="color.id" #name='ngModel' required
-              [ngClass]="{'is-invalid': (name.invalid && (name.dirty || name.touched))}">
+            <input type="text" class="form-control" placeholder="Điền vào mã màu" name="name" [(ngModel)]="color.id"
+              #name='ngModel' required [ngClass]="{'is-invalid': (name.invalid && (name.dirty || name.touched))}">
             <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
               <div *ngIf="name.errors.required">
                 Xin điền vào mã màu
@@ -26,10 +25,9 @@
             <div class="input-group mb-3">
 
               <input type="number" class="form-control" placeholder="Điền vào giá sản phẩm" name="quantity"
-              [(ngModel)]="color.quantity" required #quantity='ngModel' pattern="^[1-9]?[0-9]{1,9}$"
-              [ngClass]="{'is-invalid': (quantity.invalid && (quantity.dirty || quantity.touched))}"
-              >
-            
+                [(ngModel)]="color.quantity" required #quantity='ngModel' pattern="^[1-9]?[0-9]{1,9}$"
+                [ngClass]="{'is-invalid': (quantity.invalid && (quantity.dirty || quantity.touched))}">
+
             </div>
             <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="text-danger">
               <div *ngIf="quantity.errors.required">
@@ -40,13 +38,24 @@
               </div>
             </div>
           </div>
-          
+
 
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="onSubmit()" [disabled]="!productForm.form.valid">Thêm</button>
-        <button type="button" class="btn btn-danger" (click)="closeModal()">Đóng</button>
+        <div class="col-sm-6">
+          <h4><span class="badge badge-pill badge-success" *ngIf="requestStatus == 200">Thành công</span></h4>
+          <h4><span class="badge badge-pill badge-danger" *ngIf="requestStatus == 500">Thất bại</span></h4>
+        </div>
+        <div class="col-sm-6 d-flex justify-content-end" style="padding: 0px">
+            <button type="button" class="btn btn-success" (click)="onSubmit(productForm)" 
+            [disabled]="!productForm.form.valid || (requestStatus ==1)">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="requestStatus == 1" ></span>
+            <span *ngIf="requestStatus == 0">Thêm</span>
+            <span *ngIf="requestStatus == 200">Thêm tiếp</span>
+          </button>
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Đóng</button>
+        </div>
       </div>
     </div>
   </div>

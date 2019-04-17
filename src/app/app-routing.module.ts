@@ -1,3 +1,4 @@
+import { ReportComponent } from './report/report.component';
 import { OrderComponent } from './order/order.component';
 import { ColorComponent } from './color/color.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
@@ -8,10 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', component: StorageComponent },
-  { path: 'product/create', component:ProductCreateComponent},
-  { path: 'product/color', component:ColorComponent},
-  { path: 'xuat', component:OrderComponent},
+  { path: 'kho', component: StorageComponent },
+  { path: '', component: ReportComponent}
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

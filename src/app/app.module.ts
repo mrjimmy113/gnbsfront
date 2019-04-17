@@ -1,3 +1,4 @@
+import { Color } from './model/color';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
@@ -9,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ColorComponent } from './color/color.component';
 import { SizeComponent } from './size/size.component';
 import { OrderComponent } from './order/order.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { OrderComponent } from './order/order.component';
     ColorComponent,
     SizeComponent,
     OrderComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,11 @@ import { OrderComponent } from './order/order.component';
     FormsModule,
     HttpClientModule,
   ],
+  entryComponents: [
+    ProductCreateComponent,
+    OrderComponent,
+    ColorComponent
+],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,32 @@
-<div id="modal-container"  class="hidden"></div>
+<div id="modal-container" class="hidden"></div>
 <div id="overlay" class="overlay" class="hidden"></div>
-<router-outlet></router-outlet>
+<div class="row" style="height: 100vh; overflow-y: auto">
+    <div class="col-sm-2 nopadding w3-blue">
+        <div class="d-flex justify-content-center" style="padding-top: 10px; padding-bottom: 20px">
+            <img src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t1.0-9/50885278_2007713892859299_8043952954853556224_n.png?_nc_cat=111&_nc_oc=AQnUwpeK5kOHC-B6UrmWwA6_AY6Xeo4qS_6B1Kj9ni3OQ0xRjmBAPmcAUjGUxbb9tQE&_nc_ht=scontent.fsgn5-3.fna&oh=a8a63d1bfcbbf89cf4abf905b672367e&oe=5D324C93"
+                width="150px" height="150px" class="w3-circle" />
+
+        </div>
+        <div class="list-group" style="padding-left: 15px">
+            <a href="/">
+                <div class="list-group-item w3-blue w3-hover-green d-flex align-content-center">
+                    <i class="fas fa-tachometer-alt" style="font-size: 24px"></i>
+                    <span style="padding-left: 5px">Báo cáo</span>
+                </div>
+            </a>
+
+            <a href="/kho">
+                <div class="list-group-item w3-blue w3-hover-green d-flex align-content-center">
+                    <i class="fas fa-box-open" style="font-size: 24px"></i>
+                    <span style="padding-left: 5px">Kho hàng</span>
+                </div>
+            </a>
 
 
+
+        </div>
+    </div>
+    <div class="col-sm-10" style="padding-right: 20px">
+        <router-outlet></router-outlet>
+    </div>
+</div>
